@@ -1,0 +1,59 @@
+@import url('http://fonts.cdnfonts.com/css/gotham');
+
+.login {
+    padding-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    padding-top: 15px;
+}
+
+.Field {
+    display: flex;
+    flex-direction: column;
+}
+
+.Field label {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.Actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.email {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 30px;
+    width: 300px;
+    padding-top: 5px;
+    border-radius: 5px;
+    background-color: #e1e2f0;
+    border-style: none;
+}
+
+.password {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 30px;
+    width: 300px;
+    padding-top: 5px;
+    border-radius: 5px;
+    background-color: #e1e2f0;
+    border-style: none;
+}
+
+.loginbutton {
+    font-family: 'Gotham Black', sans-serif;
+    padding: 5px 15px;
+    background-color: #e1e2f0;
+    border-style: none;
+    border-radius: 5px;
+}

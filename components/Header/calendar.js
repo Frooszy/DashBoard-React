@@ -5,7 +5,7 @@ function Calendar() {
     return (
 
         <div className={style.Container}>
-            <p>99/99/9999</p>
+            <p>31/12/2022</p>
         </div>
 
     )

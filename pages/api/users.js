@@ -2,7 +2,13 @@ export default function handler(req, res) {
 
     const useraccount = JSON.parse(req.body)
 
-    if (useraccount.email === "thecryzin@gmail.com" && useraccount.password === '123456') {
+    const accounts = (
+        {
+            email: 'admin@gmail.com',
+            password: 'admin'
+        })
+
+    if (useraccount.email === accounts.email && useraccount.password === accounts.password) {
         res.status(200).json({ teste: 'teste' })
     } else {
         res.status(401).json({ error: 'User or Password are incorrect' })

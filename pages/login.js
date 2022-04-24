@@ -11,8 +11,15 @@ export default function Login() {
 
     function handleSubmit(e) {
 
+        function teste() {
+            return (
+                <div className='teste'>
+                    <p>teste</p>
+                </div>
+            )
+        }
+
         e.preventDefault();
-        console.log('Submit', { email, password })
 
         fetch('/api/users', {
             method: 'post',
@@ -22,7 +29,7 @@ export default function Login() {
             })
         }).then(res => {
             if (res.status == 200) {
-                router.push('/')
+                router.push('/dashboard')
             }
         }).catch(res => console.error('Error'))
 

@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import style from '../components/loginJsCss/style.module.css'
 
 export default function Login() {
+
+    const router = useRouter();
 
     const [email, setEmail] = useState("");
     const [password, setPasword] = useState("");
@@ -10,6 +13,18 @@ export default function Login() {
 
         e.preventDefault();
         console.log('Submit', { email, password })
+
+        fetch('/api/users', {
+            method: 'post',
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        }).then(res => {
+            if (res.status == 200) {
+                router.push('/')
+            }
+        }).catch(res => console.error('Error'))
 
     }
 

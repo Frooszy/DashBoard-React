@@ -3,8 +3,6 @@
     top: 60px;
 }
 
-.Links {}
-
 .Links ul {
     display: flex;
     flex-direction: column;

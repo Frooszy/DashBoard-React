@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import style from '../components/loginJsCss/style.module.css'
 
 export default function Login() {
@@ -9,15 +10,16 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPasword] = useState("");
 
-    function handleSubmit(e) {
+    useEffect(() => {
+        const AreLogin = localStorage.getItem('USER_LOGIN')
 
-        function teste() {
-            return (
-                <div className='teste'>
-                    <p>teste</p>
-                </div>
-            )
+        if (AreLogin === 'True') {
+            router.push('/dashboard')
         }
+    }, [])
+
+
+    function handleSubmit(e) {
 
         e.preventDefault();
 
@@ -30,6 +32,9 @@ export default function Login() {
         }).then(res => {
             if (res.status == 200) {
                 router.push('/dashboard')
+                localStorage.setItem('USER_LOGIN', 'True')
+            } else {
+                localStorage.setItem('USER_LOGIN', 'False')
             }
         }).catch(res => console.error('Error'))
 

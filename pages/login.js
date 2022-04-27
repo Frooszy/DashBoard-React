@@ -18,16 +18,19 @@ export default function Login() {
         }
     }, [])
 
-
     function handleSubmit(e) {
 
         e.preventDefault();
 
+        const teste = JSON.parse(string)
+
+        console.log(teste)
+
         fetch('/api/users', {
             method: 'post',
             body: JSON.stringify({
-                email: email,
-                password: password
+                "email": email,
+                "password": password
             })
         }).then(res => {
             if (res.status == 200) {

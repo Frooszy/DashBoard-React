@@ -1,7 +1,10 @@
 import style from '../components/RegisterJsCss/Register.module.css'
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Register() {
+
+    const router = useRouter();
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -10,6 +13,22 @@ export default function Register() {
     function handleSubmit(e) {
 
         e.preventDefault();
+
+        fetch('/api/register', {
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            method: 'post',
+            body: JSON.stringify({
+                "username": username,
+                "email": email,
+                "password": password
+            })
+        }).then(res => {
+            if (res.status == 200) {
+                router.push('/login')
+            }
+        }).catch(res => console.error('Error'))
 
     }
 

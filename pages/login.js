@@ -18,15 +18,14 @@ export default function Login() {
         }
     }, [])
 
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        const teste = JSON.parse(string)
-
-        console.log(teste)
-
-        fetch('/api/users', {
+        fetch('/api/login', {
+            headers: {
+                "Content-Type": 'application/json'
+            },
             method: 'post',
             body: JSON.stringify({
                 "email": email,
@@ -34,8 +33,8 @@ export default function Login() {
             })
         }).then(res => {
             if (res.status == 200) {
-                router.push('/dashboard')
                 localStorage.setItem('USER_LOGIN', 'True')
+                router.push('/dashboard')
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
             }

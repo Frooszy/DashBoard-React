@@ -1,20 +1,27 @@
 import style from './Logo.module.css'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function Logo() {
 
-    // Alterar LOGIN para pagina do perfil, futuramente.
+    const Router = useRouter();
+
+    const Logout = () => {
+
+        console.log('teste')
+
+        Router.push('/login')
+
+        localStorage.setItem('USER_LOGIN', 'False')
+
+    }
 
     return (
         <div className={style.Header}>
             <p className={style.Logo}>Frooszy</p>
             <p className={style.DashBoard}>DashBoard</p>
-            <div className={style.Login}>
-                <Link href='/dashboard'>Logout</Link>
-            </div>
+            <p className={style.Login} onClick={Logout}>Logout</p>
         </div>
     )
-
 }
 
 export default Logo

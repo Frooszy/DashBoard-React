@@ -3,7 +3,6 @@ import accounts from './../../data/accounts.json'
 export default function handler(req, res) {
 
     const useremail = req.body.email
-
     const userpassword = req.body.password
 
     const Verification = accounts.filter(account => account.email == useremail && account.password == userpassword)

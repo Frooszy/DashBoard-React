@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 
 function Logo() {
 
+    const name = localStorage.getItem('USER_USERNAME')
+
     const Router = useRouter();
 
     const Logout = () => {
@@ -19,7 +21,10 @@ function Logo() {
         <div className={style.Header}>
             <p className={style.Logo}>Frooszy</p>
             <p className={style.DashBoard}>DashBoard</p>
-            <p className={style.Login} onClick={Logout}>Logout</p>
+            <div className={style.LoginW}>
+                <p className={style.Login}>Welcome Back, {name}.</p>
+                <p className={style.Logout} onClick={Logout}>Logout</p>
+            </div>
         </div>
     )
 }

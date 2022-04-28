@@ -26,7 +26,10 @@ export default function Register() {
             })
         }).then(res => {
             if (res.status == 200) {
+                localStorage.setItem('USER_USERNAME', username);
                 router.push('/login')
+            } else {
+                localStorage.removeItem('USER_USERNAME')
             }
         }).catch(res => console.error('Error'))
 

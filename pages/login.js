@@ -33,8 +33,15 @@ export default function Login() {
             })
         }).then(res => {
             if (res.status == 200) {
-                localStorage.setItem('USER_LOGIN', 'True')
-                router.push('/dashboard')
+
+                res.json().then(data => {
+                    const Username = data.LoginUsername
+
+                    localStorage.setItem('USER_USERNAME', Username)
+                    localStorage.setItem('USER_LOGIN', 'True')
+                    router.push('/dashboard')
+                })
+
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
             }

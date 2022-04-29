@@ -1,15 +1,19 @@
 import style from './Logo.module.css'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
 
 function Logo() {
 
-    const name = localStorage.getItem('USER_USERNAME')
+    const [name, setName] = useState()
+
+    useEffect(() => {
+        const name = localStorage.getItem('USER_USERNAME')
+        setName(name)
+    }, [])
 
     const Router = useRouter();
 
     const Logout = () => {
-
-        console.log('teste')
 
         Router.push('/login')
 

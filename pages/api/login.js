@@ -1,3 +1,5 @@
+//A Json file with the accounts
+
 import accounts from './../../data/accounts.json'
 
 export default function handler(req, res) {

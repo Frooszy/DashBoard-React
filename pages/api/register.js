@@ -1,3 +1,5 @@
+//A Json file with the accounts
+
 import accounts from './../../data/accounts.json'
 import fs from 'fs'
 

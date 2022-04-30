@@ -18,8 +18,7 @@
     display: none;
 }
 
-@media (max-width: 425px) {
-
+@media (max-width: 768px) {
     .ButtonMenu {
         top: 10px;
         left: 10px;
@@ -51,3 +50,6 @@
         border-bottom-right-radius: 10px;
     }
 }
+
+
+@media (max-width: 425px) {}

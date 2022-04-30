@@ -7,6 +7,12 @@
     max-width: 105px;
 }
 
+@media (max-width: 768px) {
+    .Container p {
+        margin-left: 18px;
+    }
+}
+
 @media (max-width: 425px) {
 
     .Container p {

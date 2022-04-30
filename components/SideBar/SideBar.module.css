@@ -1,6 +1,15 @@
+@import url('http://fonts.cdnfonts.com/css/gotham');
+
 .Header {
-    position: absolute;
-    top: 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Logo {
+    padding-left: 30px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .Links ul {
@@ -29,4 +38,24 @@
 .Links ul li p:hover {
     background-color: #e1e2f0;
     color: #767fd8;
+}
+
+.LoginW {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    padding-left: 25px;
+    padding-bottom: 10px;
+}
+
+.Login {
+    padding-top: 5px;
+    width: 140px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.Logout {
+    cursor: pointer;
 }

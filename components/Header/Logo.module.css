@@ -3,34 +3,23 @@
     justify-content: space-between;
 }
 
-.Logo {
-    padding-left: 30px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.LoginW {
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.Login {
-    padding-top: 5px;
-    width: 140px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.Logout {
-    position: absolute;
-    top: 550px;
-    left: 40px;
-    cursor: pointer;
-}
-
 .DashBoard {
-    position: absolute;
-    left: 190px;
     font-size: 26px;
+}
+
+@media (max-width: 425px) {
+
+    .DashBoard {
+        font-size: 22px;
+        padding-left: 20px;
+        padding-top: 30px;
+        margin-bottom: 5px;
+    }
+
+    .Login {
+        padding-right: 5px;
+        padding-top: 10px;
+        font-size: 12px;
+        width: 90px;
+    }
 }

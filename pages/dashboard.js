@@ -3,10 +3,12 @@ import Header from "../components/Header/Header"
 import Calendar from "../components/Header/calendar"
 import DashBoard from "../components/Dashboard/DashBoard"
 import style from '../components/IndexJsCss/Index.module.css'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function DBMain() {
+
+    const [open, setOpen] = useState(false);
 
     const router = useRouter();
 
@@ -18,18 +20,23 @@ export default function DBMain() {
         }
     }, [])
 
+    const ToogleMenu = () => {
+
+        setOpen(!open)
+
+    }
+
     return (
 
-        <div className="mainDashboard">
-            <div className={style.Header}>
-                <Header />
-                <Calendar />
+        <div className={style.MainDashboard}>
+            <div className={style.MenuLateral + ' ' + (open ? style.MenuLateralOpen : "")}>
+                <button className={style.ButtonMenu} onClick={ToogleMenu}>Menu</button>
+                <SideBar />
             </div>
             <div className={style.Informacoes}>
+                <Header />
+                <Calendar />
                 <DashBoard />
-            </div>
-            <div className={style.MenuLateral}>
-                <SideBar />
             </div>
         </div>
 

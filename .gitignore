@@ -20,7 +20,7 @@
 *.pem
 
 # accounts json repository
-data/accounts.json
+accounts.json
 
 # debug
 npm-debug.log*

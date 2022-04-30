@@ -1,5 +1,53 @@
+.MainDashboard {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+
 .Informacoes {
-    position: absolute;
-    top: 130px;
-    left: 180px;
+    width: 100%;
+}
+
+.MenuLateral {
+    height: 100%;
+}
+
+.ButtonMenu {
+    display: none;
+}
+
+@media (max-width: 425px) {
+
+    .ButtonMenu {
+        top: 10px;
+        left: 10px;
+        position: fixed;
+        display: flex;
+        padding: 3px 8px;
+        border-style: none;
+        border-radius: 5px;
+        color: #767fd8;
+        background-color: #cdcdcd;
+        font-family: 'Gotham Black', sans-serif;
+        font-size: 20px;
+    }
+
+    .MenuLateral {
+        position: fixed;
+        padding-top: 20px;
+        width: 220px;
+        z-index: 1000;
+        background-color: #e1e2f0;
+        left: -220px;
+        transition: 1s;
+    }
+
+    .MenuLateralOpen {
+        transition: 1s;
+        left: 0px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
 }

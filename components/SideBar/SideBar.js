@@ -1,4 +1,3 @@
-import style from './SideBar.module.css'
 import { useRouter } from 'next/router';
 
 import {
@@ -6,11 +5,12 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Button,
     MenuGroup,
     MenuDivider,
-    CloseButton,
+    IconButton,
+    Container,
 } from '@chakra-ui/react'
+import { HamburgerIcon } from '@chakra-ui/icons'
 
 function SideBar() {
 
@@ -25,11 +25,13 @@ function SideBar() {
     }
 
     return (
-        <div className={style.Header}>
-            <div className={style.Links}>
+        <Container p='0'>
+            <Container p='0'>
                 <Menu>
-                    <MenuButton as={Button} colorScheme='green'>
-                        Profile
+                    <MenuButton as={IconButton}
+                        aria-label='Options'
+                        icon={<HamburgerIcon />}
+                        variant='outline'>
                     </MenuButton>
                     <MenuList>
                         <MenuGroup title='Profile'>
@@ -51,8 +53,8 @@ function SideBar() {
                         </MenuGroup>
                     </MenuList>
                 </Menu>
-            </div>
-        </div>
+            </Container>
+        </Container>
     )
 
 }

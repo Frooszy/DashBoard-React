@@ -1,9 +1,8 @@
-import style from '../components/RegisterJsCss/Register.module.css'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 //chakra
-import { Heading, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Heading, Input, Button, InputGroup, InputRightElement, Flex, Container, Divider } from '@chakra-ui/react'
 
 export default function Register() {
 
@@ -15,6 +14,12 @@ export default function Register() {
 
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
+
+    const LoginClick = () => {
+
+        router.push('/login')
+
+    }
 
     function handleSubmit(e) {
 
@@ -44,18 +49,18 @@ export default function Register() {
 
     return (
 
-        <div className={style.register}>
+        <Flex pt='20' justifyContent='center' alignItems='center' flexDir='column'>
             <Heading>Register System</Heading>
-            <form className={style.form} onSubmit={handleSubmit}>
-                <div className={style.Field}>
+            <form onSubmit={handleSubmit}>
+                <Container pt='5'>
                     <label htmlFor="Username">Username</label>
-                    <Input className={style.username} type="username" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <div className={style.Field}>
+                    <Input type="username" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </Container>
+                <Container pt='5'>
                     <label htmlFor="email">Email</label>
-                    <Input className={style.email} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className={style.Field}>
+                    <Input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </Container>
+                <Container pt='5'>
                     <label htmlFor="password">Password</label>
                     <InputGroup size='md'>
                         <Input
@@ -72,12 +77,18 @@ export default function Register() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                </div>
-                <div className={style.Actions}>
-                    <Button type="submit">Register</Button>
-                </div>
+                </Container>
+                <Flex pt='6' justifyContent='center'>
+                    <Button type="submit" variant='outline'>Register</Button>
+                </Flex>
+                <Divider p='2' />
+                <Container pt='4' display='flex' justifyContent='center'>
+                    <Button onClick={LoginClick} variant='outline'>
+                        Login
+                    </Button>
+                </Container>
             </form>
-        </div>
+        </Flex>
 
     )
 

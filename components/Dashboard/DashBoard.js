@@ -1,6 +1,6 @@
 import style from './DashBoard.module.css'
 
-import { Box, Badge, SimpleGrid } from '@chakra-ui/react'
+import { Box, Badge, SimpleGrid, Flex, Progress } from '@chakra-ui/react'
 
 
 function DashBoard() {
@@ -8,8 +8,8 @@ function DashBoard() {
     return (
         <div className={style.Container}>
 
-            <SimpleGrid columns={5} spacing={10} p='5' pl='20'>
-                <Box maxW='sm' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+            <SimpleGrid columns={3} spacing={10} p='5' pl='20'>
+                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -18,7 +18,7 @@ function DashBoard() {
                         noOfLines={1}
                         mb='3'
                     >
-                        Status
+                        Management - Server 1
                     </Box>
                     <Box display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='green' mb='2'>
@@ -26,16 +26,19 @@ function DashBoard() {
                         </Badge>
                     </Box>
                     <Box
+                        as='kbd'
                         color='gray.500'
                         fontWeight='semibold'
                         letterSpacing='wide'
                         fontSize='xs'
                         ml='2'
+                        pb='3'
                     >
-                        Server-1
+                        No Bugs Found on Server.
                     </Box>
-                </Box>
-                <Box maxW='sm' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                    <Progress colorScheme='green' size='sm' value={100} />
+                </Flex>
+                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -44,7 +47,7 @@ function DashBoard() {
                         noOfLines={1}
                         mb='3'
                     >
-                        Status
+                        Management - Server 2
                     </Box>
                     <Box display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='green' mb="2">
@@ -52,16 +55,19 @@ function DashBoard() {
                         </Badge>
                     </Box>
                     <Box
+                        as='kbd'
                         color='gray.500'
                         fontWeight='semibold'
                         letterSpacing='wide'
                         fontSize='xs'
                         ml='2'
+                        pb='3'
                     >
-                        Server-2
+                        No Bugs Found on Server.
                     </Box>
-                </Box>
-                <Box maxW='sm' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                    <Progress colorScheme='green' size='sm' value={100} />
+                </Flex>
+                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -70,7 +76,7 @@ function DashBoard() {
                         noOfLines={1}
                         mb='3'
                     >
-                        Status
+                        Management - Server 3
                     </Box>
                     <Box display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='red' mb="2">
@@ -78,15 +84,18 @@ function DashBoard() {
                         </Badge>
                     </Box>
                     <Box
+                        pb='3'
+                        as='kbd'
                         color='gray.500'
                         fontWeight='semibold'
                         letterSpacing='wide'
                         fontSize='xs'
                         ml='2'
                     >
-                        Server-3
+                        The system was stopped manually.
                     </Box>
-                </Box>
+                    <Progress colorScheme='red' size='sm' value={100} />
+                </Flex>
             </SimpleGrid>
         </div >
     )

@@ -1,13 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import style from '../components/loginJsCss/style.module.css'
 
 //Chakra
-import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
-
+import { Button, Input, InputGroup, InputRightElement, Heading, Flex, Container, Divider } from '@chakra-ui/react'
 
 export default function Login() {
 
@@ -18,6 +14,12 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPasword] = useState("");
+
+    const RegisterClick = () => {
+
+        router.push('/register')
+
+    }
 
     useEffect(() => {
         const AreLogin = localStorage.getItem('USER_LOGIN')
@@ -60,14 +62,14 @@ export default function Login() {
 
     return (
 
-        <div id="login" className={style.login}>
+        <Flex pt='20' justifyContent='center' alignItems='center' flexDir='column'>
             <Heading>Login System</Heading>
-            <form className={style.form} onSubmit={handleSubmit}>
-                <div className={style.Field}>
+            <form onSubmit={handleSubmit}>
+                <Container pt='5'>
                     <label htmlFor="email">Email</label>
                     <Input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className={style.Field}>
+                </Container>
+                <Container pt='5'>
                     <label htmlFor="password">Password</label>
                     <InputGroup size='md'>
                         <Input
@@ -85,12 +87,17 @@ export default function Login() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                </div>
-                <div className={style.Actions}>
-                    <Button type="submit">Login</Button>
-                </div>
+                </Container>
+                <Container pt='6' display='flex' justifyContent='center'>
+                    <Button type="submit" variant='outline'>Login</Button>
+                </Container>
+                <Divider p='2' />
+                <Container pt='4' display='flex' justifyContent='center'>
+                    <Button onClick={RegisterClick} variant='outline'>
+                        Register
+                    </Button>
+                </Container>
             </form>
-        </div>
-
+        </Flex>
     )
 }

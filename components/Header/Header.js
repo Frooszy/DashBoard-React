@@ -1,8 +1,7 @@
-import style from './Logo.module.css'
 import { useEffect, useState } from 'react';
 import SideBar from '../SideBar/SideBar';
 
-import { Text, Heading } from '@chakra-ui/react'
+import { Text, Heading, Tooltip, Flex } from '@chakra-ui/react'
 
 function Logo() {
 
@@ -14,15 +13,17 @@ function Logo() {
     }, [])
 
     return (
-        <div className={style.Header}>
-            <div className={style.LateralEsquerda}>
+        <Flex justifyContent='space-between' p='4' >
+            <Flex flexDirection='row'>
                 <SideBar />
                 <Heading pl='5'>DashBoard</Heading>
-            </div>
-            <div className={style.LoginW}>
-                <Text>Welcome Back, {name}.</Text>
-            </div>
-        </div>
+            </Flex>
+            <Flex>
+                <Tooltip label="Our Team Thank You For Your Participation." placement='bottom-start' aria-label='A tooltip'>
+                    <Text as='i'>Welcome Back, {name}.</Text>
+                </Tooltip>
+            </Flex>
+        </Flex>
     )
 }
 

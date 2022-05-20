@@ -3,7 +3,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import style from '../components/loginJsCss/style.module.css'
 
+//Chakra
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
+
+
 export default function Login() {
+
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
 
     const router = useRouter();
 
@@ -52,18 +61,33 @@ export default function Login() {
     return (
 
         <div id="login" className={style.login}>
-            <h1>Login System</h1>
+            <Heading>Login System</Heading>
             <form className={style.form} onSubmit={handleSubmit}>
                 <div className={style.Field}>
                     <label htmlFor="email">Email</label>
-                    <input className={style.email} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className={style.Field}>
                     <label htmlFor="password">Password</label>
-                    <input className={style.password} type="password" name="password" id="password" value={password} onChange={(e => setPasword(e.target.value))} />
+                    <InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            type={show ? 'text' : 'password'}
+                            placeholder='Enter password'
+                            name="password"
+                            id="password"
+                            value={password}
+                            onChange={(e => setPasword(e.target.value))}
+                        />
+                        <InputRightElement width='4.5rem'>
+                            <Button h='1.75rem' size='sm' onClick={handleClick}>
+                                {show ? 'Hide' : 'Show'}
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
                 </div>
                 <div className={style.Actions}>
-                    <button className={style.loginbutton} type="submit">Login</button>
+                    <Button type="submit">Login</Button>
                 </div>
             </form>
         </div>

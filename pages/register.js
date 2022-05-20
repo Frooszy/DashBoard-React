@@ -2,6 +2,9 @@ import style from '../components/RegisterJsCss/Register.module.css'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+//chakra
+import { Heading, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+
 export default function Register() {
 
     const router = useRouter();
@@ -9,6 +12,9 @@ export default function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
 
     function handleSubmit(e) {
 
@@ -39,22 +45,36 @@ export default function Register() {
     return (
 
         <div className={style.register}>
-            <h1>Register System</h1>
+            <Heading>Register System</Heading>
             <form className={style.form} onSubmit={handleSubmit}>
                 <div className={style.Field}>
                     <label htmlFor="Username">Username</label>
-                    <input className={style.username} type="username" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <Input className={style.username} type="username" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div className={style.Field}>
                     <label htmlFor="email">Email</label>
-                    <input className={style.email} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Input className={style.email} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className={style.Field}>
                     <label htmlFor="password">Password</label>
-                    <input className={style.password} type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <InputGroup size='md'>
+                        <Input
+                            pr='4.5rem'
+                            type={show ? 'text' : 'password'}
+                            placeholder='Enter password'
+                            name="password"
+                            id="password"
+                            value={password} onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <InputRightElement width='4.5rem'>
+                            <Button h='1.75rem' size='sm' onClick={handleClick}>
+                                {show ? 'Hide' : 'Show'}
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
                 </div>
                 <div className={style.Actions}>
-                    <button className={style.loginbutton} type="submit">Register</button>
+                    <Button type="submit">Register</Button>
                 </div>
             </form>
         </div>

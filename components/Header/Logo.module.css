@@ -7,6 +7,16 @@
     font-size: 26px;
 }
 
+.Login {
+    padding-right: 25px;
+}
+
+.LateralEsquerda {
+    display: flex;
+    flex-direction: row;
+}
+
+
 @media (max-width: 768px) {
     .Login {
         font-size: 16px;

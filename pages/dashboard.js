@@ -1,6 +1,5 @@
 import SideBar from "../components/SideBar/SideBar"
 import Header from "../components/Header/Header"
-import Calendar from "../components/Header/calendar"
 import DashBoard from "../components/Dashboard/DashBoard"
 import style from '../components/IndexJsCss/Index.module.css'
 import { useEffect, useState } from "react"
@@ -29,13 +28,8 @@ export default function DBMain() {
     return (
 
         <div className={style.MainDashboard}>
-            <div className={style.MenuLateral + ' ' + (open ? style.MenuLateralOpen : "")}>
-                <button className={style.ButtonMenu} onClick={ToogleMenu}>Menu</button>
-                <SideBar />
-            </div>
             <div className={style.Informacoes}>
                 <Header />
-                <Calendar />
                 <DashBoard />
             </div>
         </div>

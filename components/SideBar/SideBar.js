@@ -1,6 +1,17 @@
 import style from './SideBar.module.css'
 import { useRouter } from 'next/router';
 
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    Button,
+    MenuGroup,
+    MenuDivider,
+    CloseButton,
+} from '@chakra-ui/react'
+
 function SideBar() {
 
     const Router = useRouter();
@@ -15,22 +26,31 @@ function SideBar() {
 
     return (
         <div className={style.Header}>
-            <p className={style.Logo}>Frooszy</p>
             <div className={style.Links}>
-                <ul>
-                    <li><p>Dashboard</p></li>
-                    <li><p>Custoners</p></li>
-                    <li><p>Orders</p></li>
-                    <li><p>Analytics</p></li>
-                    <li><p>Messages</p></li>
-                    <li><p>Products</p></li>
-                    <li><p>Reports</p></li>
-                    <li><p>Settings</p></li>
-                    <li><p>Add Product</p></li>
-                </ul>
-            </div>
-            <div className={style.LoginW}>
-                <p className={style.Logout} onClick={Logout}>Logout</p>
+                <Menu>
+                    <MenuButton as={Button} colorScheme='green'>
+                        Profile
+                    </MenuButton>
+                    <MenuList>
+                        <MenuGroup title='Profile'>
+                            <MenuItem>My Account</MenuItem>
+                            <MenuItem>Personal Settings</MenuItem>
+                        </MenuGroup>
+                        <MenuDivider />
+                        <MenuGroup title='DashBoard'>
+                            <MenuItem>Custoners</MenuItem>
+                            <MenuItem>Orders</MenuItem>
+                            <MenuItem>Analytics</MenuItem>
+                            <MenuItem>Products</MenuItem>
+                        </MenuGroup>
+                        <MenuDivider />
+                        <MenuGroup title='Help'>
+                            <MenuItem>Docs</MenuItem>
+                            <MenuItem>Settings</MenuItem>
+                            <MenuItem onClick={Logout}>Logout</MenuItem>
+                        </MenuGroup>
+                    </MenuList>
+                </Menu>
             </div>
         </div>
     )

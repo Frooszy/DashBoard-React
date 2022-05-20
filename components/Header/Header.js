@@ -1,5 +1,8 @@
 import style from './Logo.module.css'
 import { useEffect, useState } from 'react';
+import SideBar from '../SideBar/SideBar';
+
+import { Text, Heading } from '@chakra-ui/react'
 
 function Logo() {
 
@@ -12,9 +15,12 @@ function Logo() {
 
     return (
         <div className={style.Header}>
-            <p className={style.DashBoard}>DashBoard</p>
+            <div className={style.LateralEsquerda}>
+                <SideBar />
+                <Heading pl='5'>DashBoard</Heading>
+            </div>
             <div className={style.LoginW}>
-                <p className={style.Login}>Welcome Back, {name}.</p>
+                <Text>Welcome Back, {name}.</Text>
             </div>
         </div>
     )

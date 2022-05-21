@@ -21,7 +21,7 @@ function TableDashBoard() {
 
     return (
         <Flex pt='8' pb='8' pl='5' pr='5'>
-            <TableContainer flexDirection='column' borderRadius='lg' borderWidth='1px' width='100%' height='100%'>
+            <TableContainer boxShadow='xl' flexDirection='column' borderRadius='lg' borderWidth='1px' width='100%' height='100%'>
                 <Table variant='simple'>
                     <TableCaption>Updated 2 hours ago.</TableCaption>
                     <Thead>
@@ -56,7 +56,7 @@ function TableDashBoard() {
                 </Table>
             </TableContainer>
             <Divider orientation='vertical' pl='3' pr='3' />
-            <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4}>
+            <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4}>
                 <Alert
                     borderRadius='5px'
                     status='error'

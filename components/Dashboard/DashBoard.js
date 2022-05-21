@@ -1,6 +1,6 @@
 import style from './DashBoard.module.css'
 
-import { Box, Badge, SimpleGrid, Flex, Progress } from '@chakra-ui/react'
+import { Box, Badge, SimpleGrid, Flex, Progress, Divider } from '@chakra-ui/react'
 
 
 function DashBoard() {
@@ -9,7 +9,7 @@ function DashBoard() {
         <div className={style.Container}>
 
             <SimpleGrid columns={4} spacing={10} p='5'>
-                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -20,7 +20,8 @@ function DashBoard() {
                     >
                         Management - Server 1
                     </Box>
-                    <Box display='flex' alignItems='baseline'>
+                    <Divider w='auto' />
+                    <Box mt='3' display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='green' mb='2'>
                             Running
                         </Badge>
@@ -38,7 +39,7 @@ function DashBoard() {
                     </Box>
                     <Progress colorScheme='green' size='sm' value={100} borderRadius='5px' />
                 </Flex>
-                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -49,7 +50,8 @@ function DashBoard() {
                     >
                         Management - Server 2
                     </Box>
-                    <Box display='flex' alignItems='baseline'>
+                    <Divider w='auto' />
+                    <Box mt='3' display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='green' mb="2">
                             Running
                         </Badge>
@@ -67,7 +69,7 @@ function DashBoard() {
                     </Box>
                     <Progress colorScheme='green' size='sm' value={100} borderRadius='5px' />
                 </Flex>
-                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -78,7 +80,8 @@ function DashBoard() {
                     >
                         Management - Server 3
                     </Box>
-                    <Box display='flex' alignItems='baseline'>
+                    <Divider w='auto' />
+                    <Box mt='3' display='flex' alignItems='baseline'>
                         <Badge borderRadius='full' px='2' colorScheme='red' mb="2">
                             Offline
                         </Badge>
@@ -96,7 +99,7 @@ function DashBoard() {
                     </Box>
                     <Progress colorScheme='red' size='sm' value={100} borderRadius='5px' />
                 </Flex>
-                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
                         fontWeight='semibold'
@@ -107,8 +110,9 @@ function DashBoard() {
                     >
                         Management - Server 4
                     </Box>
-                    <Box display='flex' alignItems='baseline'>
-                        <Badge borderRadius='full' px='2' colorScheme='purple' mb="2">
+                    <Divider w='auto' />
+                    <Box mt='3' display='flex' alignItems='baseline'>
+                        <Badge borderRadius='full' px='2' colorScheme='blue' mb="2">
                             Not found
                         </Badge>
                     </Box>
@@ -121,9 +125,9 @@ function DashBoard() {
                         fontSize='xs'
                         ml='2'
                     >
-                        No servers have been added.
+                        No server have been added.
                     </Box>
-                    <Progress colorScheme='purple' size='sm' value={100} borderRadius='5px' />
+                    <Progress colorScheme='blue' size='sm' value={100} borderRadius='5px' />
                 </Flex>
             </SimpleGrid>
         </div >

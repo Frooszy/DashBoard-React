@@ -49,11 +49,24 @@ export default function Login() {
                 res.json().then(data => {
                     const UserTOKEN = data.token
 
-                    setCookies('USER_TOKEN', UserTOKEN)
-                    localStorage.setItem('USER_LOGIN', 'True')
-                    router.push('/dashboard')
-                })
+                    fetch('/api/user', {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type": 'application/json',
+                            "Authorization": 'Bearer ' + UserTOKEN
+                        },
+                    }).then(res => {
+                        if (res.status == 200) {
 
+                            res.json().then(data => {
+                                const usernameID = data.Username
+                                localStorage.setItem('USER_USERNAME', usernameID)
+                                localStorage.setItem('USER_LOGIN', 'True')
+                                router.push('/dashboard')
+                            })
+                        }
+                    })
+                })
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
             }

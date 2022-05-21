@@ -36,7 +36,7 @@ function DashBoard() {
                     >
                         No Bugs Found on Server.
                     </Box>
-                    <Progress colorScheme='green' size='sm' value={100} />
+                    <Progress colorScheme='green' size='sm' value={100} borderRadius='5px' />
                 </Flex>
                 <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
@@ -65,7 +65,7 @@ function DashBoard() {
                     >
                         No Bugs Found on Server.
                     </Box>
-                    <Progress colorScheme='green' size='sm' value={100} />
+                    <Progress colorScheme='green' size='sm' value={100} borderRadius='5px' />
                 </Flex>
                 <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
@@ -94,7 +94,7 @@ function DashBoard() {
                     >
                         The system was stopped manually.
                     </Box>
-                    <Progress colorScheme='red' size='sm' value={100} />
+                    <Progress colorScheme='red' size='sm' value={100} borderRadius='5px' />
                 </Flex>
                 <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
@@ -123,7 +123,7 @@ function DashBoard() {
                     >
                         No servers have been added.
                     </Box>
-                    <Progress colorScheme='purple' size='sm' value={100} />
+                    <Progress colorScheme='purple' size='sm' value={100} borderRadius='5px' />
                 </Flex>
             </SimpleGrid>
         </div >

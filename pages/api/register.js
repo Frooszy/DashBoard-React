@@ -12,7 +12,11 @@ export default function handler(req, res) {
     const UsernameV = accounts.filter(account => account.username == Username)
     const EmailV = accounts.filter(account => account.email == Email)
 
-    if (UsernameV.length > 0) {
+    if (Username === '') {
+        res.status(401).json({ Resultado: 'Username Invalid' })
+    } else if (Email === '') {
+        res.status(401).json({ Resultado: 'Email Invalid' })
+    } else if (UsernameV.length > 0) {
         res.status(401).json({ Resultado: "Username Already Used" })
     } else if (EmailV.length > 0) {
         res.status(401).json({ Resultado: "Email Already Used" })

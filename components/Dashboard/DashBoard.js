@@ -8,7 +8,7 @@ function DashBoard() {
     return (
         <div className={style.Container}>
 
-            <SimpleGrid columns={3} spacing={10} p='5' pl='20'>
+            <SimpleGrid columns={4} spacing={10} p='5'>
                 <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
                     <Box
                         color='black'
@@ -95,6 +95,35 @@ function DashBoard() {
                         The system was stopped manually.
                     </Box>
                     <Progress colorScheme='red' size='sm' value={100} />
+                </Flex>
+                <Flex maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>
+                    <Box
+                        color='black'
+                        fontWeight='semibold'
+                        as='h4'
+                        lineHeight='tight'
+                        noOfLines={1}
+                        mb='3'
+                    >
+                        Management - Server 4
+                    </Box>
+                    <Box display='flex' alignItems='baseline'>
+                        <Badge borderRadius='full' px='2' colorScheme='purple' mb="2">
+                            Not found
+                        </Badge>
+                    </Box>
+                    <Box
+                        pb='3'
+                        as='kbd'
+                        color='gray.500'
+                        fontWeight='semibold'
+                        letterSpacing='wide'
+                        fontSize='xs'
+                        ml='2'
+                    >
+                        No servers have been added.
+                    </Box>
+                    <Progress colorScheme='purple' size='sm' value={100} />
                 </Flex>
             </SimpleGrid>
         </div >

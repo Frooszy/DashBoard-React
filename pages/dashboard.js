@@ -1,29 +1,10 @@
-import SideBar from "../components/SideBar/SideBar"
 import Header from "../components/Header/Header"
 import DashBoard from "../components/Dashboard/DashBoard"
 import style from '../components/IndexJsCss/Index.module.css'
-import { useEffect, useState } from "react"
-import { useRouter } from "next/router"
+import { Divider } from "@chakra-ui/react"
+import TableDashBoard from "../components/Dashboard/Table"
 
 export default function DBMain() {
-
-    const [open, setOpen] = useState(false);
-
-    const router = useRouter();
-
-    useEffect(() => {
-        const AreLogin = localStorage.getItem('USER_LOGIN')
-
-        if (AreLogin === 'False') {
-            router.push('/login')
-        }
-    }, [])
-
-    const ToogleMenu = () => {
-
-        setOpen(!open)
-
-    }
 
     return (
 
@@ -31,6 +12,8 @@ export default function DBMain() {
             <div className={style.Informacoes}>
                 <Header />
                 <DashBoard />
+                <Divider p='2' w='auto' />
+                <TableDashBoard />
             </div>
         </div>
 

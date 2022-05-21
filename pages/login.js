@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { setCookies } from 'cookies-next';
 
 //Chakra
 import { Button, Input, InputGroup, InputRightElement, Heading, Flex, Container, Divider } from '@chakra-ui/react'
@@ -46,9 +47,9 @@ export default function Login() {
             if (res.status == 200) {
 
                 res.json().then(data => {
-                    const Username = data.LoginUsername
+                    const UserTOKEN = data.token
 
-                    localStorage.setItem('USER_USERNAME', Username)
+                    setCookies('USER_TOKEN', UserTOKEN)
                     localStorage.setItem('USER_LOGIN', 'True')
                     router.push('/dashboard')
                 })

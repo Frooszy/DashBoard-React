@@ -31,6 +31,12 @@ function SideBar() {
 
     }
 
+    const DashBoard = () => {
+
+        Router.push('/dashboard')
+
+    }
+
     return (
         <Container p='0'>
             <Container p='0'>
@@ -47,8 +53,8 @@ function SideBar() {
                         </MenuGroup>
                         <MenuDivider />
                         <MenuGroup title='DashBoard'>
+                            <MenuItem onClick={DashBoard}>DashBoard</MenuItem>
                             <MenuItem onClick={ManagementF}>Management</MenuItem>
-                            <MenuItem>Orders</MenuItem>
                             <MenuItem>Analytics</MenuItem>
                             <MenuItem>Products</MenuItem>
                         </MenuGroup>

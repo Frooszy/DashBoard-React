@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import SideBar from '../SideBar/SideBar';
 
-import { Text, Heading, Tooltip, Flex } from '@chakra-ui/react'
+import { Text, Heading, Tooltip, Flex, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 
 function Logo() {
 
@@ -14,12 +14,14 @@ function Logo() {
 
     return (
         <Flex justifyContent='space-between' p='4' >
-            <Flex flexDirection='row'>
+            <Flex>
                 <SideBar />
-                <Heading pl='5'>DashBoard</Heading>
+                <Tooltip label="Full Developed by Frooszy" placement='bottom' aria-label='A tooltip'>
+                    <Heading pl='5'>Frooszy</Heading>
+                </Tooltip>
             </Flex>
             <Flex>
-                <Tooltip label="Our Team Thank You For Your Participation." placement='bottom-start' aria-label='A tooltip'>
+                <Tooltip label="Our Team Thank You For Your Participation." placement='auto' aria-label='A tooltip'>
                     <Text as='i'>Welcome Back, {name}.</Text>
                 </Tooltip>
             </Flex>

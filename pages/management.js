@@ -1,8 +1,7 @@
-import { Flex } from "@chakra-ui/react";
-import SideBar from "../components/SideBar/SideBar";
+import { Container, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
+import Header from "../components/Header/Header"
 
 export default function management() {
 
@@ -42,9 +41,11 @@ export default function management() {
     }, [])
 
     return (
-        <Flex>
-            <SideBar />
-        </Flex>
+        <div>
+            <div>
+                <Header />
+            </div>
+        </div>
     )
 
 }

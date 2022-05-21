@@ -18,9 +18,16 @@ function SideBar() {
 
     const Logout = () => {
 
+        localStorage.setItem('USER_LOGIN', 'False')
+        localStorage.removeItem('USER_TOKEN')
+
         Router.push('/login')
 
-        localStorage.setItem('USER_LOGIN', 'False')
+    }
+
+    const ManagementF = () => {
+
+        Router.push('/management')
 
     }
 
@@ -40,7 +47,7 @@ function SideBar() {
                         </MenuGroup>
                         <MenuDivider />
                         <MenuGroup title='DashBoard'>
-                            <MenuItem>Custoners</MenuItem>
+                            <MenuItem onClick={ManagementF}>Management</MenuItem>
                             <MenuItem>Orders</MenuItem>
                             <MenuItem>Analytics</MenuItem>
                             <MenuItem>Products</MenuItem>

@@ -22,7 +22,7 @@ export default function handler(req, res) {
         res.status(401).json({ Resultado: "Email Already Used" })
     } else {
 
-        accounts.push({ username: Username, email: Email, password: Password })
+        accounts.push({ username: Username, email: Email, password: Password, userpriority: "NotAutorized" })
 
         const Final = JSON.stringify(accounts)
 

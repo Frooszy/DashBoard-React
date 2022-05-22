@@ -29,7 +29,7 @@ export default function management() {
 
                         const Priority = data.UserPriority
 
-                        if (Priority != "admin") {
+                        if (Priority != "Admin") {
                             router.push('/dashboard')
                         }
 

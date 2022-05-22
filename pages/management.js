@@ -1,7 +1,8 @@
-import { Container, Flex } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Header from "../components/Header/Header"
+import AccountTable from "../components/AccountManagement/AccountTable"
 
 export default function management() {
 
@@ -44,6 +45,8 @@ export default function management() {
         <div>
             <div>
                 <Header />
+                <Divider />
+                <AccountTable />
             </div>
         </div>
     )

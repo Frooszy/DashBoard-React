@@ -6,7 +6,7 @@ import { Box, Badge, SimpleGrid, Flex, Progress, Divider } from '@chakra-ui/reac
 function DashBoard() {
 
     return (
-        <div className={style.Container}>
+        <div>
 
             <SimpleGrid columns={4} spacing={10} p='5'>
                 <Flex boxShadow='xl' maxW='sm' flexDirection='column' borderRadius='lg' borderWidth='1px' overflow='hidden' w='100%' p={4} color='white'>

@@ -3,13 +3,13 @@
         "username": "Frooszy",
         "email": "frooszy@admin.com",
         "password": "frooszy@admin",
-        "userpriority": "Current"
+        "userpriority": "admin"
     },
     {
         "username": "Admin",
         "email": "admin@admin.com",
         "password": "admin@admin",
-        "userpriority": "Admin"
+        "userpriority": "admin"
     },
     {
         "username": "User",

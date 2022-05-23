@@ -15,7 +15,7 @@ import {
     Input,
     Select,
     Textarea,
-    Button
+    Button,
 } from "@chakra-ui/react"
 
 import { EditIcon } from '@chakra-ui/icons'
@@ -79,7 +79,27 @@ function AccountTable() {
                 })
             })
 
+        } else if (PriorityUser != "") {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": CurrentUsername,
+                    "userpriority": CurrentUser.userpriority,
+                    "email": CurrentUser.email
+                })
+            })
+
         } else {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
             fetch('/api/accountmchange', {
                 method: 'POST',
                 headers: {
@@ -149,21 +169,19 @@ function AccountTable() {
                                 </Box>
                                 <Box>
                                     <FormLabel htmlFor='owner'>Select Position</FormLabel>
-                                    <Select id='owner' defaultValue='Current' value={PriorityUser} onChange={(e) => setPriorityUser(e.target.value)}>
-                                        <option value='Current'>{CurrentUser?.userpriority}</option>
+                                    <Select id='owner' placeholder={CurrentUser?.userpriority} onChange={(e) => setPriorityUser(e.target.value)}>
                                         <option value='admin'>Admin</option>
                                         <option value='manager'>Manager</option>
                                         <option value='member'>Member</option>
                                     </Select>
                                 </Box>
 
-                                <Box>
+                                <Box pb='10'>
                                     <FormLabel htmlFor='desc'>Notes</FormLabel>
                                     <Textarea id='desc' />
                                 </Box>
                             </Stack>
                         </DrawerBody>
-
                         <DrawerFooter borderTopWidth='1px'>
                             <Button variant='outline' mr={3} onClick={onClose}>
                                 Cancel

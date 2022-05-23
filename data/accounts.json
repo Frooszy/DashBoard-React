@@ -1,1 +1,26 @@
-[{"username":"Frooszy","email":"frooszy@admin.com","password":"frooszy@admin","userpriority":"Admin"},{"username":"Admin","email":"admin@admin.com","password":"admin@admin","userpriority":"Admin"},{"username":"User","email":"user@gmail.com","password":"123123123","userpriority":"NotAutorized"},{"username":"Struntuz","email":"s@s.com","password":"sss","userpriority":"NotAutorized"}]
+[
+    {
+        "username": "Frooszy",
+        "email": "frooszy@admin.com",
+        "password": "frooszy@admin",
+        "userpriority": "Current"
+    },
+    {
+        "username": "Admin",
+        "email": "admin@admin.com",
+        "password": "admin@admin",
+        "userpriority": "Admin"
+    },
+    {
+        "username": "User",
+        "email": "user@gmail.com",
+        "password": "123123123",
+        "userpriority": "NotAutorized"
+    },
+    {
+        "username": "Struntuz",
+        "email": "s@s.com",
+        "password": "sss",
+        "userpriority": "NotAutorized"
+    }
+]

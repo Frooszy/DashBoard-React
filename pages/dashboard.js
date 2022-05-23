@@ -10,11 +10,38 @@ export default function DBMain() {
     const router = useRouter()
 
     useEffect(() => {
-        const AreLogin = localStorage.getItem('USER_LOGIN')
 
-        if (AreLogin === 'False') {
+        const UserToken = localStorage.getItem('USER_TOKEN')
+
+        if (UserToken) {
+
+            fetch('/api/user', {
+                method: 'GET',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserToken
+                },
+            }).then(res => {
+                if (res.status == 200) {
+
+                    res.json().then(data => {
+
+                        const Priority = data.UserPriority
+
+                        if (Priority != "Admin") {
+                            router.push('/dashboard')
+                        }
+
+                    })
+                } else {
+                    router.push('/login')
+                }
+            })
+
+        } else {
             router.push('/login')
         }
+
     }, [])
 
     return (

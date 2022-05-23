@@ -9,12 +9,10 @@ export default function management() {
     const router = useRouter()
 
     useEffect(() => {
-        const AreLogin = localStorage.getItem('USER_LOGIN')
 
-        if (AreLogin === 'False') {
-            router.push('/login')
-        } else {
-            const UserToken = localStorage.getItem('USER_TOKEN')
+        const UserToken = localStorage.getItem('USER_TOKEN')
+
+        if (UserToken) {
 
             fetch('/api/user', {
                 method: 'GET',
@@ -34,9 +32,13 @@ export default function management() {
                         }
 
                     })
+                } else {
+                    router.push('/login')
                 }
             })
 
+        } else {
+            router.push('/login')
         }
 
     }, [])

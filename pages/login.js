@@ -66,7 +66,6 @@ export default function Login() {
                                 const usernameID = data.Username
 
                                 localStorage.setItem('USER_USERNAME', usernameID)
-                                localStorage.setItem('USER_LOGIN', 'True')
                                 router.push('/dashboard')
                             })
                         }

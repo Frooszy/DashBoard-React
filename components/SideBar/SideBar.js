@@ -18,7 +18,6 @@ function SideBar() {
 
     const Logout = () => {
 
-        localStorage.setItem('USER_LOGIN', 'False')
         localStorage.removeItem('USER_TOKEN')
 
         Router.push('/login')

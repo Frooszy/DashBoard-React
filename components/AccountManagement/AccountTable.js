@@ -29,6 +29,9 @@ function AccountTable() {
 
     const [CurrentUser, setCurrentUser] = useState('')
 
+    const [Username, setUsername] = useState('')
+    const [PriorityUser, setPriorityUser] = useState('')
+
     useEffect(() => {
 
         const UserTOKEN = localStorage.getItem('USER_TOKEN')
@@ -53,6 +56,45 @@ function AccountTable() {
         })
 
     }, [])
+
+    const FormClick = () => {
+
+        const CurrentUsername = CurrentUser.username
+
+
+        if (Username != "") {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": Username,
+                    "userpriority": PriorityUser,
+                    "email": CurrentUser.email
+                })
+            })
+
+        } else {
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": CurrentUsername,
+                    "userpriority": PriorityUser,
+                    "email": CurrentUser.email
+                })
+            })
+        }
+
+    }
 
     return (
 
@@ -102,11 +144,12 @@ function AccountTable() {
                                         defaultValue={CurrentUser?.username}
                                         id='username'
                                         placeholder='Name'
+                                        onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </Box>
                                 <Box>
                                     <FormLabel htmlFor='owner'>Select Position</FormLabel>
-                                    <Select id='owner' defaultValue='Current'>
+                                    <Select id='owner' defaultValue='Current' value={PriorityUser} onChange={(e) => setPriorityUser(e.target.value)}>
                                         <option value='Current'>{CurrentUser?.userpriority}</option>
                                         <option value='admin'>Admin</option>
                                         <option value='manager'>Manager</option>
@@ -125,7 +168,7 @@ function AccountTable() {
                             <Button variant='outline' mr={3} onClick={onClose}>
                                 Cancel
                             </Button>
-                            <Button colorScheme='blue'>Submit</Button>
+                            <Button colorScheme='blue' onClick={FormClick}>Submit</Button>
                         </DrawerFooter>
                     </DrawerContent>
                 </Drawer>

@@ -94,7 +94,7 @@ export default function Login() {
 
                                     router.push('/dashboard')
 
-                                }, 2000);
+                                }, 1000);
                             })
                         }
                     })
@@ -109,7 +109,7 @@ export default function Login() {
 
                     setSNotify(false)
 
-                }, 5000);
+                }, 3000);
             }
         }).catch(res => console.error('Error'))
 

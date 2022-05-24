@@ -89,9 +89,6 @@ function AccountTable() {
 
     const FormClick = () => {
 
-        const CurrentUsername = CurrentUser.username
-
-
         if (Username === "" && PriorityUser != "") {
 
             const UserTOKEN = localStorage.getItem('USER_TOKEN')
@@ -233,7 +230,7 @@ function AccountTable() {
             <Container width='100%' maxWidth='100%'>
                 <TableContainer boxShadow='xl' flexDirection='column' borderRadius='lg' borderWidth='1px' width='100%' height='100%'>
                     <Table variant='simple'>
-                        <TableCaption>Updated 1 hours ago.</TableCaption>
+                        <TableCaption>Frooszy's Account Management</TableCaption>
                         <Thead>
                             <Tr>
                                 <Th>Username</Th>

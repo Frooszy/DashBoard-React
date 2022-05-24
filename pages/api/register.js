@@ -13,13 +13,13 @@ export default function handler(req, res) {
     const EmailV = accounts.filter(account => account.email == Email)
 
     if (Username === '') {
-        res.status(401).json({ Resultado: 'Username Invalid' })
+        res.status(401).json({ Resultado: 'Nome De Usuário Invalido.' })
     } else if (Email === '') {
-        res.status(401).json({ Resultado: 'Email Invalid' })
+        res.status(401).json({ Resultado: 'Email Inválido.' })
     } else if (UsernameV.length > 0) {
-        res.status(401).json({ Resultado: "Username Already Used" })
+        res.status(401).json({ Resultado: "Este Nome De Usuário já está em uso." })
     } else if (EmailV.length > 0) {
-        res.status(401).json({ Resultado: "Email Already Used" })
+        res.status(401).json({ Resultado: "Este Email já está em uso." })
     } else {
 
         accounts.push({ username: Username, email: Email, password: Password, userpriority: "NotAutorized" })
@@ -28,7 +28,7 @@ export default function handler(req, res) {
 
         fs.writeFileSync('data/accounts.json', Final)
 
-        res.status(200).json({ Resultado: "Ok." })
+        res.status(200).json({ Resultado: "Conta Registrada com sucesso!" })
     }
 
 

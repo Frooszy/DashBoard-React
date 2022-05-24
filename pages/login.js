@@ -3,11 +3,25 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 //Chakra
-import { Button, Input, InputGroup, InputRightElement, Heading, Flex, Container, Divider } from '@chakra-ui/react'
+import { Button, Input, InputGroup, InputRightElement, Heading, Flex, Container, Divider, Alert, ScaleFade } from '@chakra-ui/react'
+import { InfoIcon } from '@chakra-ui/icons'
 
 export default function Login() {
 
+    function Notify() {
 
+        return (
+
+            <Flex>
+                <Alert status={Status} variant='left-accent' borderRadius='5'>
+                    <InfoIcon mr='3' />
+                    {NContent}
+                </Alert>
+            </Flex>
+
+        )
+
+    }
 
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
@@ -16,6 +30,10 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPasword] = useState("");
+
+    const [NContent, setNContent] = useState('')
+    const [SNotify, setSNotify] = useState(false)
+    const [Status, setStatus] = useState('error')
 
     const RegisterClick = () => {
 
@@ -49,6 +67,7 @@ export default function Login() {
 
                 res.json().then(data => {
                     const UserTOKEN = data.token
+                    setNContent(data.resultado)
 
                     fetch('/api/user', {
                         method: 'GET',
@@ -64,15 +83,33 @@ export default function Login() {
                                 localStorage.setItem('USER_TOKEN', UserTOKEN)
 
                                 const usernameID = data.Username
-
                                 localStorage.setItem('USER_USERNAME', usernameID)
-                                router.push('/dashboard')
+
+                                setStatus('success')
+                                setSNotify(true)
+
+                                setTimeout(() => {
+
+                                    setSNotify(false)
+
+                                    router.push('/dashboard')
+
+                                }, 2000);
                             })
                         }
                     })
                 })
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
+                setNContent('Algo Deu Errado.')
+                setStatus('error')
+                setSNotify(true)
+
+                setTimeout(() => {
+
+                    setSNotify(false)
+
+                }, 2000);
             }
         }).catch(res => console.error('Error'))
 
@@ -110,12 +147,15 @@ export default function Login() {
                     <Button type="submit" variant='outline'>Login</Button>
                 </Container>
                 <Divider p='2' />
-                <Container pt='4' display='flex' justifyContent='center'>
+                <Container pt='4' pb='6' display='flex' justifyContent='center'>
                     <Button onClick={RegisterClick} variant='outline'>
                         Register
                     </Button>
                 </Container>
             </form>
+            <ScaleFade initialScale={0.9} in={SNotify}>
+                <Notify />
+            </ScaleFade>
         </Flex>
     )
 }

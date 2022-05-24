@@ -39,7 +39,7 @@ function AccountTable() {
         return (
 
             <Flex>
-                <Alert status='success' variant='left-accent'>
+                <Alert status='success' variant='left-accent' borderRadius='5'>
                     <CheckCircleIcon mr='3' />
                     {NContent}
                 </Alert>

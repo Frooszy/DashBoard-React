@@ -25,11 +25,11 @@ export default function handler(req, res) {
                 expiresIn: 365 * 24 * 60 * 60,
             },
             (err, token) => {
-                res.status(200).json({ resultado: 'Ok', token: token })
+                res.status(200).json({ resultado: 'Logado com Sucesso.', token: token })
             },
         )
     } else {
-        res.status(401).json({ Resultado: 'Email or Password Invalid' })
+        res.status(401).json({ Resultado: 'Email Ou Senha Incorretos.' })
     }
 
 }

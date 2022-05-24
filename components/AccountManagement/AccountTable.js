@@ -40,7 +40,7 @@ function AccountTable() {
 
             <Flex>
                 <Alert status='success' variant='left-accent' borderRadius='5'>
-                    <CheckCircleIcon mr='3' />
+                    <CheckCircleIcon mr='2' />
                     {NContent}
                 </Alert>
             </Flex>
@@ -103,8 +103,8 @@ function AccountTable() {
                     "Authorization": 'Bearer ' + UserTOKEN
                 },
                 body: JSON.stringify({
-                    "username": Username,
-                    "userpriority": CurrentUser.userpriority,
+                    "username": CurrentUser.username,
+                    "userpriority": PriorityUser,
                     "email": CurrentUser.email
                 })
             }).then(res => {
@@ -136,8 +136,41 @@ function AccountTable() {
                     "Authorization": 'Bearer ' + UserTOKEN
                 },
                 body: JSON.stringify({
-                    "username": CurrentUsername.username,
-                    "userpriority": PriorityUser,
+                    "username": Username,
+                    "userpriority": CurrentUser.userpriority,
+                    "email": CurrentUser.email
+                })
+            }).then(res => {
+                if (res.status == 200) {
+
+                    res.json().then(data => {
+
+                        setNContent(data.Resultado)
+
+                        setSNotify(true)
+
+                        setTimeout(() => {
+                            setSNotify(false)
+                        }, 3000)
+
+                    })
+
+                }
+            })
+
+        } else if (PriorityUser === '' && Username === '') {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": CurrentUser.username,
+                    "userpriority": CurrentUser.userpriority,
                     "email": CurrentUser.email
                 })
             }).then(res => {

@@ -14,7 +14,7 @@ export default function Login() {
 
             <Flex>
                 <Alert status={Status} variant='left-accent' borderRadius='5'>
-                    <InfoIcon mr='3' />
+                    <InfoIcon mr='2' />
                     {NContent}
                 </Alert>
             </Flex>
@@ -109,7 +109,7 @@ export default function Login() {
 
                     setSNotify(false)
 
-                }, 2000);
+                }, 5000);
             }
         }).catch(res => console.error('Error'))
 

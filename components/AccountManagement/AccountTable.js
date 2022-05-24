@@ -1,7 +1,16 @@
 import {
     Container,
     Flex,
-    IconButton, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Drawer,
+    IconButton,
+    TableContainer,
+    Table,
+    TableCaption,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    Drawer,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
@@ -16,21 +25,42 @@ import {
     Select,
     Textarea,
     Button,
+    ScaleFade,
+    Alert,
 } from "@chakra-ui/react"
 
-import { EditIcon } from '@chakra-ui/icons'
+import { EditIcon, CheckCircleIcon } from '@chakra-ui/icons'
 import { useState, useEffect } from "react"
 
 function AccountTable() {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    function Notify() {
 
+        return (
+
+            <Flex>
+                <Alert status='success' variant='left-accent'>
+                    <CheckCircleIcon mr='3' />
+                    {NContent}
+                </Alert>
+            </Flex>
+
+        )
+
+    }
+
+    //Outros
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [Users, setUsers] = useState([])
 
+    //Dados
     const [CurrentUser, setCurrentUser] = useState('')
-
     const [Username, setUsername] = useState('')
     const [PriorityUser, setPriorityUser] = useState('')
+
+    //Sistema de notificação
+    const [NContent, setNContent] = useState('')
+    const [SNotify, setSNotify] = useState(false)
 
     useEffect(() => {
 
@@ -62,7 +92,73 @@ function AccountTable() {
         const CurrentUsername = CurrentUser.username
 
 
-        if (Username != "") {
+        if (Username === "" && PriorityUser != "") {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": Username,
+                    "userpriority": CurrentUser.userpriority,
+                    "email": CurrentUser.email
+                })
+            }).then(res => {
+                if (res.status == 200) {
+
+                    res.json().then(data => {
+
+                        setNContent(data.Resultado)
+
+                        setSNotify(true)
+
+                        setTimeout(() => {
+                            setSNotify(false)
+                        }, 3000)
+
+                    })
+
+                }
+            })
+
+        } else if (PriorityUser === "" && Username != "") {
+
+            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+
+            fetch('/api/accountmchange', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserTOKEN
+                },
+                body: JSON.stringify({
+                    "username": CurrentUsername.username,
+                    "userpriority": PriorityUser,
+                    "email": CurrentUser.email
+                })
+            }).then(res => {
+                if (res.status == 200) {
+
+                    res.json().then(data => {
+
+                        setNContent(data.Resultado)
+
+                        setSNotify(true)
+
+                        setTimeout(() => {
+                            setSNotify(false)
+                        }, 3000)
+
+                    })
+
+                }
+            })
+
+        } else {
 
             const UserTOKEN = localStorage.getItem('USER_TOKEN')
 
@@ -77,40 +173,22 @@ function AccountTable() {
                     "userpriority": PriorityUser,
                     "email": CurrentUser.email
                 })
-            })
+            }).then(res => {
+                if (res.status == 200) {
 
-        } else if (PriorityUser != "") {
+                    res.json().then(data => {
 
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+                        setNContent(data.Resultado)
 
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": CurrentUsername,
-                    "userpriority": CurrentUser.userpriority,
-                    "email": CurrentUser.email
-                })
-            })
+                        setSNotify(true)
 
-        } else {
+                        setTimeout(() => {
+                            setSNotify(false)
+                        }, 3000)
 
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+                    })
 
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": CurrentUsername,
-                    "userpriority": PriorityUser,
-                    "email": CurrentUser.email
-                })
+                }
             })
         }
 
@@ -180,6 +258,9 @@ function AccountTable() {
                                     <FormLabel htmlFor='desc'>Notes</FormLabel>
                                     <Textarea id='desc' />
                                 </Box>
+                                <ScaleFade initialScale={0.9} in={SNotify}>
+                                    <Notify />
+                                </ScaleFade>
                             </Stack>
                         </DrawerBody>
                         <DrawerFooter borderTopWidth='1px'>

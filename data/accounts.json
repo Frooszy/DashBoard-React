@@ -10,17 +10,5 @@
         "email": "admin@admin.com",
         "password": "admin@admin",
         "userpriority": "admin"
-    },
-    {
-        "username": "User",
-        "email": "user@gmail.com",
-        "password": "123123123",
-        "userpriority": "NotAutorized"
-    },
-    {
-        "username": "Struntuz",
-        "email": "s@s.com",
-        "password": "sss",
-        "userpriority": "NotAutorized"
     }
 ]

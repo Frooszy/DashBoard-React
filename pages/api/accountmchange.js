@@ -21,9 +21,9 @@ export default function handler(req, res) {
 
         fs.writeFileSync('data/accounts.json', Final)
 
-        res.status(200).json({ Resultado: 'OK' })
+        res.status(200).json({ Resultado: 'Conta Modificada com Sucesso.' })
     } else {
-        res.status(401).json({ Resultado: 'Invalid Token' })
+        res.status(401).json({ Resultado: 'Sua conta não tem permissões para modificar isso.' })
     }
 
 }

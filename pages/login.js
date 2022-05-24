@@ -42,11 +42,35 @@ export default function Login() {
     }
 
     useEffect(() => {
-        const AreLogin = localStorage.getItem('USER_LOGIN')
+        const UserToken = localStorage.getItem('USER_TOKEN')
 
-        if (AreLogin === 'True') {
-            router.push('/dashboard')
+        if (UserToken) {
+
+            fetch('/api/user', {
+                method: 'GET',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": 'Bearer ' + UserToken
+                },
+            }).then(res => {
+                if (res.status == 200) {
+
+                    res.json().then(data => {
+
+                        const Priority = data.UserPriority
+
+                        if (Priority != "Admin") {
+                            router.push('/dashboard')
+                        }
+
+                    })
+                } else {
+                    router.push('/dashboard')
+                }
+            })
+
         }
+
     }, [])
 
     const handleSubmit = (e) => {

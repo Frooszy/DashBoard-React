@@ -29,8 +29,9 @@ import {
     Alert,
 } from "@chakra-ui/react"
 
-import { EditIcon, CheckCircleIcon } from '@chakra-ui/icons'
+import { EditIcon, InfoIcon } from '@chakra-ui/icons'
 import { useState, useEffect } from "react"
+import Router, { useRouter } from "next/router"
 
 function AccountTable() {
 
@@ -39,8 +40,8 @@ function AccountTable() {
         return (
 
             <Flex>
-                <Alert status='success' variant='left-accent' borderRadius='5'>
-                    <CheckCircleIcon mr='2' />
+                <Alert status={Status} variant='left-accent' borderRadius='5'>
+                    <InfoIcon mr='2' />
                     {NContent}
                 </Alert>
             </Flex>
@@ -50,6 +51,7 @@ function AccountTable() {
     }
 
     //Outros
+    const router = useRouter()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [Users, setUsers] = useState([])
 
@@ -61,6 +63,7 @@ function AccountTable() {
     //Sistema de notificação
     const [NContent, setNContent] = useState('')
     const [SNotify, setSNotify] = useState(false)
+    const [Status, setStatus] = useState('error')
 
     useEffect(() => {
 
@@ -89,139 +92,55 @@ function AccountTable() {
 
     const FormClick = () => {
 
-        if (Username === "" && PriorityUser != "") {
+        const UserTOKEN = localStorage.getItem('USER_TOKEN')
 
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
+        fetch('/api/accountmchange', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": 'Bearer ' + UserTOKEN
+            },
+            body: JSON.stringify({
+                "username": Username,
+                "userpriority": PriorityUser,
+                "email": CurrentUser.email,
+                "indexusername": CurrentUser.username
+            })
+        }).then(res => {
+            if (res.status == 200) {
 
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": CurrentUser.username,
-                    "userpriority": PriorityUser,
-                    "email": CurrentUser.email
-                })
-            }).then(res => {
-                if (res.status == 200) {
+                res.json().then(data => {
 
-                    res.json().then(data => {
+                    setNContent(data.Resultado)
+                    setStatus('success')
+                    setSNotify(true)
 
-                        setNContent(data.Resultado)
-
-                        setSNotify(true)
+                    setTimeout(() => {
+                        setSNotify(false)
+                        onClose()
 
                         setTimeout(() => {
-                            setSNotify(false)
-                        }, 3000)
+                            router.reload();
+                        }, 1000)
 
-                    })
+                    }, 2000)
 
-                }
-            })
-
-        } else if (PriorityUser === "" && Username != "") {
-
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
-
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": Username,
-                    "userpriority": CurrentUser.userpriority,
-                    "email": CurrentUser.email
                 })
-            }).then(res => {
-                if (res.status == 200) {
 
-                    res.json().then(data => {
+            } else {
+                res.json().then(data => {
 
-                        setNContent(data.Resultado)
+                    setNContent(data.Resultado)
+                    setStatus('error')
+                    setSNotify(true)
 
-                        setSNotify(true)
+                    setTimeout(() => {
+                        setSNotify(false)
+                    }, 3000);
 
-                        setTimeout(() => {
-                            setSNotify(false)
-                        }, 3000)
-
-                    })
-
-                }
-            })
-
-        } else if (PriorityUser === '' && Username === '') {
-
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
-
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": CurrentUser.username,
-                    "userpriority": CurrentUser.userpriority,
-                    "email": CurrentUser.email
                 })
-            }).then(res => {
-                if (res.status == 200) {
-
-                    res.json().then(data => {
-
-                        setNContent(data.Resultado)
-
-                        setSNotify(true)
-
-                        setTimeout(() => {
-                            setSNotify(false)
-                        }, 3000)
-
-                    })
-
-                }
-            })
-
-        } else {
-
-            const UserTOKEN = localStorage.getItem('USER_TOKEN')
-
-            fetch('/api/accountmchange', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": 'Bearer ' + UserTOKEN
-                },
-                body: JSON.stringify({
-                    "username": Username,
-                    "userpriority": PriorityUser,
-                    "email": CurrentUser.email
-                })
-            }).then(res => {
-                if (res.status == 200) {
-
-                    res.json().then(data => {
-
-                        setNContent(data.Resultado)
-
-                        setSNotify(true)
-
-                        setTimeout(() => {
-                            setSNotify(false)
-                        }, 3000)
-
-                    })
-
-                }
-            })
-        }
-
+            }
+        })
     }
 
     return (

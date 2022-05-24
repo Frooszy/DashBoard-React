@@ -57,15 +57,9 @@ export default function Login() {
 
                     res.json().then(data => {
 
-                        const Priority = data.UserPriority
-
-                        if (Priority != "Admin") {
-                            router.push('/dashboard')
-                        }
+                        router.push('/dashboard')
 
                     })
-                } else {
-                    router.push('/dashboard')
                 }
             })
 
@@ -125,7 +119,7 @@ export default function Login() {
                 })
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
-                setNContent('Algo Deu Errado.')
+                setNContent('Algo deu errado.')
                 setStatus('error')
                 setSNotify(true)
 

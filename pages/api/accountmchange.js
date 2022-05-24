@@ -12,12 +12,13 @@ export default function handler(req, res) {
         const Priority = req.body.userpriority
         const userEmail = req.body.email
         const IndexUsername = req.body.indexusername
-
-        console.log(IndexUsername)
+        const MUser = req.body.modifyuser
 
         const objIndex = Accounts.findIndex((obj => obj.email == userEmail));
 
-        if (Username === "") {
+        if (IndexUsername === MUser) {
+            res.status(401).json({ Resultado: "Vovê não pode modificar suas credenciais." })
+        } else if (Username === "") {
 
             if (Priority === "") {
                 res.status(401).json({ Resultado: "Você deve modificar algo para que isso seja aceito." })
@@ -26,7 +27,7 @@ export default function handler(req, res) {
 
                 const Final = JSON.stringify(Accounts)
                 fs.writeFileSync('data/accounts.json', Final)
-                res.status(200).json({ Resultado: 'Cargo do usuário modificado com sucesso.' })
+                res.status(200).json({ Resultado: 'Usuário Modificado com sucesso.' })
             }
 
         } else {
@@ -42,7 +43,7 @@ export default function handler(req, res) {
 
                         const Final = JSON.stringify(Accounts)
                         fs.writeFileSync('data/accounts.json', Final)
-                        res.status(200).json({ Resultado: 'Nome do usuário modificado com sucesso.' })
+                        res.status(200).json({ Resultado: 'Usuário Modificado com sucesso.' })
                     } else {
                         Accounts[objIndex].username = Username
                         Accounts[objIndex].userpriority = Priority
@@ -51,7 +52,7 @@ export default function handler(req, res) {
 
                         fs.writeFileSync('data/accounts.json', Final)
 
-                        res.status(200).json({ Resultado: 'Nome/Cargo do usuário modificados com sucesso.' })
+                        res.status(200).json({ Resultado: 'Usuário Modificado com sucesso.' })
                     }
 
                 } else {

@@ -31,7 +31,7 @@ import {
 
 import { EditIcon, InfoIcon } from '@chakra-ui/icons'
 import { useState, useEffect } from "react"
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 
 function AccountTable() {
 
@@ -40,7 +40,7 @@ function AccountTable() {
         return (
 
             <Flex>
-                <Alert status={Status} variant='left-accent' borderRadius='5'>
+                <Alert status={Status} variant='left-accent' borderRadius='10'>
                     <InfoIcon mr='2' />
                     {NContent}
                 </Alert>
@@ -94,49 +94,68 @@ function AccountTable() {
 
         const UserTOKEN = localStorage.getItem('USER_TOKEN')
 
-        fetch('/api/accountmchange', {
+        fetch('/api/user', {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',
                 "Authorization": 'Bearer ' + UserTOKEN
-            },
-            body: JSON.stringify({
-                "username": Username,
-                "userpriority": PriorityUser,
-                "email": CurrentUser.email,
-                "indexusername": CurrentUser.username
-            })
+            }
         }).then(res => {
-            if (res.status == 200) {
+
+            if (res.status === 200) {
 
                 res.json().then(data => {
 
-                    setNContent(data.Resultado)
-                    setStatus('success')
-                    setSNotify(true)
+                    const ModifyUser = data.Username
 
-                    setTimeout(() => {
-                        setSNotify(false)
-                        onClose()
+                    fetch('/api/accountmchange', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": 'application/json',
+                            "Authorization": 'Bearer ' + UserTOKEN
+                        },
+                        body: JSON.stringify({
+                            "username": Username,
+                            "userpriority": PriorityUser,
+                            "email": CurrentUser.email,
+                            "indexusername": CurrentUser.username,
+                            "modifyuser": ModifyUser
+                        })
+                    }).then(res => {
+                        if (res.status == 200) {
 
-                        setTimeout(() => {
-                            router.reload();
-                        }, 1000)
+                            res.json().then(data => {
 
-                    }, 2000)
+                                setNContent(data.Resultado)
+                                setStatus('success')
+                                setSNotify(true)
 
-                })
+                                setTimeout(() => {
+                                    setSNotify(false)
+                                    onClose()
 
-            } else {
-                res.json().then(data => {
+                                    setTimeout(() => {
+                                        router.reload();
+                                    }, 1000)
 
-                    setNContent(data.Resultado)
-                    setStatus('error')
-                    setSNotify(true)
+                                }, 2000)
 
-                    setTimeout(() => {
-                        setSNotify(false)
-                    }, 3000);
+                            })
+
+                        } else {
+                            res.json().then(data => {
+
+                                setNContent(data.Resultado)
+                                setStatus('error')
+                                setSNotify(true)
+
+                                setTimeout(() => {
+                                    setSNotify(false)
+                                }, 3000);
+
+                            })
+                        }
+                    })
 
                 })
             }

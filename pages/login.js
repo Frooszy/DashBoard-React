@@ -114,12 +114,24 @@ export default function Login() {
 
                                 }, 1000);
                             })
+                        } else {
+
+                            localStorage.setItem('USER_LOGIN', 'False')
+                            setNContent('Sua conta ainda não foi autorizada por um administrador!')
+                            setStatus('error')
+                            setSNotify(true)
+
+                            setTimeout(() => {
+
+                                setSNotify(false)
+
+                            }, 3000);
                         }
                     })
                 })
             } else {
                 localStorage.setItem('USER_LOGIN', 'False')
-                setNContent('Algo deu errado.')
+                setNContent('Usuário Ou Senha Incorretos.')
                 setStatus('error')
                 setSNotify(true)
 

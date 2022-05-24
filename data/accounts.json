@@ -1,20 +1,14 @@
 [
     {
-        "username": "Frooszy",
-        "email": "frooszy@admin.com",
-        "password": "frooszy@admin",
+        "username": "Admin",
+        "email": "admin@gmail.com",
+        "password": "admin@gmail",
         "userpriority": "admin"
     },
     {
-        "username": "Admin",
+        "username": "Frooszy",
         "email": "admin@admin.com",
         "password": "admin@admin",
         "userpriority": "admin"
-    },
-    {
-        "username": "Struntuz",
-        "email": "s@s.com",
-        "password": "123",
-        "userpriority": "member"
     }
 ]
